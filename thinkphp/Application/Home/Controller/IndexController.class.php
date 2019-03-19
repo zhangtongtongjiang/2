@@ -1,6 +1,7 @@
 <?php
 namespace Home\Controller;
 use Think\Controller;
+use Think\Page;
 class IndexController extends Controller {
     public function test()
     {
@@ -59,9 +60,15 @@ class IndexController extends Controller {
      * **/
     public function index()
     {
+        $num=10;
         //取出所有博文数据
+        $blog_count=$this->blog_model->count();//查询总数
         //通过模型取出数据
-        $blog_list=$this->blog_model->get_all_blog(10);
+        $page=new Page($blog_count,$num);//实例化分页类
+        $show=$page->show();//调用分页输出方法
+        $this->assign('show',$show);
+        $limit=$page->firstRow.','.$page->listRows;//设定limit值
+        $blog_list=$this->blog_model->get_all_blog($limit);//取出数据
         $this->assign('blog_list',$blog_list);//所有博文
         $this->display();//加载模板
     }

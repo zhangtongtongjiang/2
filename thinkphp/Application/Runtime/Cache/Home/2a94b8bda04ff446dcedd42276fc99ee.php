@@ -29,10 +29,32 @@
         #head a {
             text-decoration: blink;
         }
+        #blog_list div a{
+            display: block;
+            width: 15px;
+            text-align: center;
+            float: left;
+            padding: 4px;
+            background: #8B71EA;
+            border-radius: 8px;
+            text-decoration: blink;
+            color: white;
+            margin-left: 3px;
+        }
+        #blog_list div span{
+            display: block;
+            float: left;
+            padding: 4px;
+            background: #ccc;
+            border-radius: 8px;
+            text-decoration: blink;
+            color: black;
+            margin-left: 3px;
+        }
     </style>
 </head>
 <body>
-    <div id="head">
+        <div id="head">
         <a href="<?php echo U('/Home/Index/add_blog');?>">增加博文</a>
         <a href="<?php echo U('/Home/Index/index');?>">博文列表</a>
     </div>
@@ -56,6 +78,8 @@
                 </tr><?php endforeach; endif; else: echo "" ;endif; ?>
 
         </table>
+        <?php echo ($show); ?>
     </div>
+
 </body>
 </html>

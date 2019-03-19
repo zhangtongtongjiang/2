@@ -32,7 +32,7 @@
     </style>
 </head>
 <body>
-    <div id="head">
+        <div id="head">
         <a href="<?php echo U('/Home/Index/add_blog');?>">增加博文</a>
         <a href="<?php echo U('/Home/Index/index');?>">博文列表</a>
     </div>

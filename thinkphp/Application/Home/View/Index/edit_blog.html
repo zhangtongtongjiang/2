@@ -32,10 +32,7 @@
     </style>
 </head>
 <body>
-    <div id="head">
-        <a href="{:U('/Home/Index/add_blog')}">增加博文</a>
-        <a href="{:U('/Home/Index/index')}">博文列表</a>
-    </div>
+    <include file="Index/header" />
     <div id="blog_list">
         <form action="{:U('/Home/Index/save_blog')}" method="post">
             <table>
