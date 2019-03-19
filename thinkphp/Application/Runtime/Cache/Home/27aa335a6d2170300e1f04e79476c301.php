@@ -37,25 +37,27 @@
         <a href="<?php echo U('/Home/Index/index');?>">博文列表</a>
     </div>
     <div id="blog_list">
-        <table>
-            <tr>
-                <th>博文ID</th>
-                <th>博文标题</th>
-                <th>博文内容</th>
-                <th>发布时间</th>
-                <th>编辑</th>
-                <th>删除</th>
-            </tr>
-            <?php if(is_array($blog_list)): $i = 0; $__LIST__ = $blog_list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><tr>
-                    <td><?php echo ($vo["id"]); ?></td>
-                    <td><?php echo ($vo["title"]); ?></td>
-                    <td><?php echo ($vo["content"]); ?></td>
-                    <td><?php echo (date('Y-m-d H:i:s',$vo["add_time"])); ?></td>
-                    <td><a href="<?php echo U('/Home/Index/edit_blog/id/'.$vo['id']);?>">编辑</a></td>
-                    <td><a href="<?php echo U('/Home/Index/del_blog/id/'.$vo['id']);?>">删除</a></td>
-                </tr><?php endforeach; endif; else: echo "" ;endif; ?>
-
-        </table>
+        <form action="<?php echo U('/Home/Index/save_blog');?>" method="post">
+            <table>
+                <tr>
+                    <td width="100px;">博文标题</td>
+                    <td><input type="text" name="title" /></td>
+                </tr>
+                <tr>
+                    <td width="100px;">博文内容</td>
+                    <td>
+                        <textarea name="content" id="" cols="80" rows="10"></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <input type="submit" value="添加">
+                        <input type="reset" value="重置">
+                    </td>
+                </tr>
+            </table>
+        </form>
     </div>
 </body>
 </html>

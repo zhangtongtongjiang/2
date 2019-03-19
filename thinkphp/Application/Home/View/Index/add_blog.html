@@ -37,27 +37,27 @@
         <a href="{:U('/Home/Index/index')}">博文列表</a>
     </div>
     <div id="blog_list">
-        <table>
-            <tr>
-                <th>博文ID</th>
-                <th>博文标题</th>
-                <th>博文内容</th>
-                <th>发布时间</th>
-                <th>编辑</th>
-                <th>删除</th>
-            </tr>
-            <volist name="blog_list" id="vo">
+        <form action="{:U('/Home/Index/save_blog')}" method="post">
+            <table>
                 <tr>
-                    <td>{$vo.id}</td>
-                    <td>{$vo.title}</td>
-                    <td>{$vo.content}</td>
-                    <td>{$vo.add_time|date='Y-m-d H:i:s',###}</td>
-                    <td><a href="{:U('/Home/Index/edit_blog/id/'.$vo['id'])}">编辑</a></td>
-                    <td><a href="{:U('/Home/Index/del_blog/id/'.$vo['id'])}">删除</a></td>
+                    <td width="100px;">博文标题</td>
+                    <td><input type="text" name="title" /></td>
                 </tr>
-            </volist>
-
-        </table>
+                <tr>
+                    <td width="100px;">博文内容</td>
+                    <td>
+                        <textarea name="content" id="" cols="80" rows="10"></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <input type="submit" value="添加">
+                        <input type="reset" value="重置">
+                    </td>
+                </tr>
+            </table>
+        </form>
     </div>
 </body>
 </html>

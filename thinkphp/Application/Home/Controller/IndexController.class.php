@@ -52,7 +52,7 @@ class IndexController extends Controller {
 	}
 
 
-    function index()
+    public function index()
 	{
 		//取出所有博文数据
 		//模型模型取出数据
@@ -61,6 +61,53 @@ class IndexController extends Controller {
 		$this->display();//加载模板
 		
     } 
+	
+	public function add_blog()
+	{
+
+		$this->display();//加载模板
+		
+    }
+	
+	
+
+
+	
+	public function save_blog()
+    {
+        $title=I('post.title');//接收标题
+        $content=I('post.content');//接收内容
+        $data=compact("title","content");
+        $data['add_time']=time();//添加时间
+        $res=D("Blog")->add($data);
+		if($res)
+        {
+            $this->success("添加博文成功",U('/Home/Index/index'));
+        }
+        else{
+            $this->error("添加博文失败",U('/Home/Index/index'));}
+	
+    }
+	
+	
+	    /*
+     * 删除博文
+     *
+     * **/
+    public function del_blog()
+    {
+        $id=I('get.id');
+        $map['id']=$id;
+        $res=D('Blog')->where($map)->delete();
+        if($res)
+        {
+            $this->success("删除博文成功",U('/Home/Index/index'));
+        }
+        else{
+            $this->error("删除博文失败",U('/Home/Index/index'));
+        }
+    }
+	
 }
 	
 	
