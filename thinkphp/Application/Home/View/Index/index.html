@@ -1,84 +1,52 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>博文列表</title>
-    <style>
-        *{
-            margin: 0px;
-            padding: 0px;
-        }
-        body{
-            background: #ccc;
-        }
-        #blog_list{
-            margin: 40px auto;
-            width: 70%;
-            border: solid 10px #ddd;
-            padding: 20px;
-            background: #CEE5D0;
-        }
-        #blog_list table{width: 100%;}
-        #blog_list table th{text-align: left;}
-        #head{
-            margin: 40px auto;
-            width: 70%;
-            border: solid 10px #ddd;
-            padding: 20px;
-        }
-        #head a {
-            text-decoration: blink;
-        }
-        #blog_list div a{
-            display: block;
-            width: 15px;
-            text-align: center;
-            float: left;
-            padding: 4px;
-            background: #8B71EA;
-            border-radius: 8px;
-            text-decoration: blink;
-            color: white;
-            margin-left: 3px;
-        }
-        #blog_list div span{
-            display: block;
-            float: left;
-            padding: 4px;
-            background: #ccc;
-            border-radius: 8px;
-            text-decoration: blink;
-            color: black;
-            margin-left: 3px;
-        }
-    </style>
-</head>
-<body>
-    <include file="Index/header" />
-    <div id="blog_list">
-        <table>
-            <tr>
-                <th>博文ID</th>
-                <th>博文标题</th>
-                <th>博文内容</th>
-                <th>发布时间</th>
-                <th>编辑</th>
-                <th>删除</th>
-            </tr>
-            <volist name="blog_list" id="vo">
-                <tr>
-                    <td>{$vo.id}</td>
-                    <td>{$vo.title}</td>
-                    <td>{$vo.content}</td>
-                    <td>{$vo.add_time|date='Y-m-d H:i:s',###}</td>
-                    <td><a href="{:U('/Home/Index/edit_blog/id/'.$vo['id'])}">编辑</a></td>
-                    <td><a href="{:U('/Home/Index/del_blog/id/'.$vo['id'])}">删除</a></td>
-                </tr>
-            </volist>
-
-        </table>
-        {$show}
+<include file="Public/header" />
+<div class="container clearfix">
+    <div class="sidebar-wrap">
+        <div class="sidebar-title">
+            <h1>菜单</h1>
+        </div>
+        <div class="sidebar-content">
+            <include file="Public/left" />
+        </div>
     </div>
+    <!--/sidebar-->
+    <div class="main-wrap">
+        <div class="crumb-wrap">
+            <div class="crumb-list"><i class="icon-font">&#xe06b;</i><span>欢迎使用『豪情』博客程序，建博的首选工具。</span></div>
+        </div>
+        <div class="result-wrap">
+            <div class="result-title">
+                <h1>快捷操作</h1>
+            </div>
+            <div class="result-content">
+                <div class="short-wrap">
+                    <a href="{:U('/Home/Blog/add_blog')}"><i class="icon-font">&#xe005;</i>新增博文</a>
+                    <a href="{:U('/Home/Blog/cat')}"><i class="icon-font">&#xe041;</i>新增博客分类</a>
+                </div>
+            </div>
+        </div>
+        <div class="result-wrap">
+            <div class="result-title">
+                <h1>系统基本信息</h1>
+            </div>
+            <div class="result-content">
+                <ul class="sys-info-list">
+                    <li>
+                        <label class="res-lab">欢迎使用博客后台！</label>
+                    </li>
 
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--/main-->
+</div>
+<script>
+    $(function(){
+        $(".sidebar-list .sub-menu").prev().click(function() {
+            /* Act on the event */
+            $(this).parent().find(".sub-menu").toggle("slow");
+        });
+    });
+</script>
 </body>
 </html>

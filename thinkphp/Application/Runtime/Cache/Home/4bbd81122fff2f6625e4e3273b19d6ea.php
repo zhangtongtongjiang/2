@@ -27,6 +27,7 @@
         </div>
     </div>
 </div>
+
 <div class="container clearfix">
     <div class="sidebar-wrap">
         <div class="sidebar-title">
@@ -52,32 +53,39 @@
     </div>
     <!--/sidebar-->
     <div class="main-wrap">
-        <div class="crumb-wrap">
-            <div class="crumb-list"><i class="icon-font">&#xe06b;</i><span>欢迎使用『豪情』博客程序，建博的首选工具。</span></div>
-        </div>
-        <div class="result-wrap">
-            <div class="result-title">
-                <h1>快捷操作</h1>
-            </div>
-            <div class="result-content">
-                <div class="short-wrap">
-                    <a href="<?php echo U('/Home/Blog/add_blog');?>"><i class="icon-font">&#xe005;</i>新增博文</a>
-                    <a href="<?php echo U('/Home/Blog/cat');?>"><i class="icon-font">&#xe041;</i>新增博客分类</a>
-                </div>
-            </div>
-        </div>
-        <div class="result-wrap">
-            <div class="result-title">
-                <h1>系统基本信息</h1>
-            </div>
-            <div class="result-content">
-                <ul class="sys-info-list">
-                    <li>
-                        <label class="res-lab">欢迎使用博客后台！</label>
-                    </li>
 
-                </ul>
-            </div>
+        <div class="crumb-wrap">
+            <div class="crumb-list"><i class="icon-font"></i><a href="index.html">首页</a><span class="crumb-step">&gt;</span><span class="crumb-name">修改密码</span></div>
+        </div>
+        <div class="result-wrap">
+            <form action="" method="post" id="myform" name="myform">
+                <div class="config-items">
+                    <div class="config-title">
+                        <h1><i class="icon-font">&#xe00a;</i>修改密码</h1>
+                    </div>
+                    <div class="result-content">
+                        <table width="100%" class="insert-tab">
+                            <tbody>
+                                <tr>
+                                    <th width="15%"><i class="require-red">*</i>用户名：</th>
+                                    <td><input type="text"  value="<?php echo ($info["username"]); ?>" size="30" name="username" class="common-text"></td>
+                                </tr>
+                                <tr>
+                                    <th width="15%"><i class="require-red">*</i>密码：</th>
+                                    <td><input type="password"  value="<?php echo ($info["password"]); ?>" size="30" name="password" class="common-text"></td>
+                                </tr>
+                                <tr>
+                                    <th></th>
+                                    <td>
+                                        <input type="submit" value="提交" class="btn btn-primary btn6 mr10">
+                                        <input type="button" value="返回" onclick="history.go(-1)" class="btn btn6">
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
     <!--/main-->

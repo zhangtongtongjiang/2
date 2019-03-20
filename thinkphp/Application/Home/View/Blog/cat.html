@@ -1,0 +1,116 @@
+<include file="Public/header" />
+
+<div class="container clearfix">
+    <div class="sidebar-wrap">
+        <div class="sidebar-title">
+            <h1>菜单</h1>
+        </div>
+        <div class="sidebar-content">
+            <include file="Public/left" />
+        </div>
+    </div>
+    <!--/sidebar-->
+    <div class="main-wrap">
+
+        <div class="crumb-wrap">
+            <div class="crumb-list"><i class="icon-font"></i><a href="/">首页</a><span class="crumb-step">&gt;</span><span class="crumb-name">博文分类</span></div>
+        </div>
+        <div class="result-wrap">
+            <form name="myform" id="myform" method="post">
+                <div class="result-title">
+                    <div class="result-list">
+                        <a href="{:U('/Home/Blog/cat_add')}"><i class="icon-font"></i>新增分类</a>
+                        <i class="require-red"></i>
+                    </div>
+                </div>
+                <div class="result-content">
+                    <table class="result-tab" width="100%">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>名称</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <volist name="list" id="vo">
+                               <tr>
+                                    <td>{$vo.id}</td>
+                                    <td title="{$vo.name}"><a target="_blank" href="#" title="{$vo.name}">{$vo.name}</a>
+                                    </td>
+                                    <td>
+                                        <a class="link-update" href="{:U('/Home/Blog/cat_edit/id/'.$vo['id'])}">修改</a>
+                                        <a class="link-del" href="{:U('/Home/Blog/cat_del/id/'.$vo['id'])}">删除</a>
+                                    </td>
+                                </tr>
+                            </volist>
+
+                        </tbody>
+                    </table>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!--/main-->
+</div>
+<script>
+    $(function(){
+        $(".sidebar-list .sub-menu").prev().click(function() {
+            /* Act on the event */
+            $(this).parent().find(".sub-menu").toggle("slow");
+        });
+
+        //批量选择
+        $(".allChoose").click(function(event) {
+            /* 批量选择的事件 */
+            var is_all_checked=$(this).prop("checked");//判断是否被全选了
+            $(".result-tab tbody .tc input").each(function(index, el) {
+                el.checked=is_all_checked;
+            });
+        });
+
+        //批量删除
+        $("#batchDel").click(function(event) {
+            /* 批量删除的事件 */
+            $(".require-red").text();//先将提示清空
+            var id_list="";
+            $(".result-tab tbody .tc input").each(function(index, el) {
+                if (el.checked===true)
+                {
+                    id_list+=el.value+",";
+                };
+            });
+            if (id_list=="")
+            {
+                $(".require-red").text('请选择要删除的数据！');
+                return false;
+            }
+            if (confirm("确定要删除选择的数据吗？"))
+            {
+                //删除数据开始 即可以跳转 可以用ajax异步访问继续删除
+                window.location.href="list.html?id="+id_list;
+            }
+        });
+
+        //针对更新动态排序的事件
+        $(".common-input.sort-input").blur(function(){
+            var new_value=$(this);
+            var change_id=$(this).prev();
+            $.get(
+                  'chang.html',
+                  {new_value:new_value.val(),change_id:change_id.val()},
+                  function(res) {
+                    if (res.info!="Ok")
+                    {
+                        //
+                    }else
+                    {
+                        //
+                    }
+                  },
+            'json');
+        });
+    });
+</script>
+</body>
+</html>
